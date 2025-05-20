@@ -9,7 +9,7 @@ function App() {
                 purely raw. Created on 20/5/2025. I just want to learn golang,
                 if you want please follow the
                 <a
-                    href="https://github.com/tausiq2003/newgopherswetdream"
+                    href="https://github.com/tausiq2003/new-gophers-wet-dream"
                     target="_blank"
                 >
                     Github
