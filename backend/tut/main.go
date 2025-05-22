@@ -111,7 +111,7 @@ func deferredThing() {
 		defer fmt.Println(i)
 	}
 	fmt.Println("second")
-	//need to confirm this, there is a defer stack for every stack frame, not to be confused with js's eventloop which executes after empty stack, but here it depends on stack frame every stack frame have defer stack and it will execute then it will pop and stack's top will point to calling function
+	//there is a defer stack for every stack frame, not to be confused with js's eventloop which executes after empty stack, but here it depends on stack frame every stack frame have defer stack and it will execute then it will pop and stack's top will point to calling function
 
 }
 func callingfunction() {
@@ -120,6 +120,29 @@ func callingfunction() {
 		defer fmt.Println(i)
 	}
 	fmt.Println("fourth")
+}
+func foo() (i int) {
+	// in golang we can change return value which is being set, with defer means the function executes, return is about to being returned then we can do defer to change the return value
+	defer func() {
+		for i := 0; i < 10; i++ {
+			fmt.Println(i)
+
+		}
+	}()
+	defer func() { fmt.Println("helloworld"); i++ }() // function created and called like iife in js, its called closure in golang
+	return 1                                          // returns 2
+
+}
+func anExample() {
+	i := 0
+	defer fmt.Println(i) // it prints 0, because the value is captured immediately and its there in defer list
+	i++
+	j := 0
+	defer func() { // this is a closure and in closure the value is accessed by reference not by values so it prints 1
+		fmt.Println("here it is", j)
+	}()
+	j++
+	return
 }
 
 func main() {
@@ -144,5 +167,7 @@ func main() {
 	// defer switcher()
 	switcher()
 	deferredThing()
+	fmt.Println(foo())
+	anExample()
 
 }
