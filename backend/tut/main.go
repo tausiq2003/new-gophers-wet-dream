@@ -113,6 +113,7 @@ func deferredThing() {
 	fmt.Println("second")
 	//there is a defer stack for every stack frame, not to be confused with js's eventloop which executes after empty stack, but here it depends on stack frame every stack frame have defer stack and it will execute then it will pop and stack's top will point to calling function
 
+	// call defer before calling the function
 }
 func callingfunction() {
 	fmt.Println("third")
